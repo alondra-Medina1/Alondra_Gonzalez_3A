@@ -1,0 +1,64 @@
+---
+title: "Practica Diagnostico"
+author: "Alondra Gonzalez Medina"
+format: pdf
+---
+
+# Simular un ticket de venta con emojis 🧾
+# Objeto: Aplicar funciones, bucles, condiciones
+# Listas y variables 
+
+```{python}
+import os
+os.system("cls")
+
+productos = ["🥤 Frappe Capuccino", "🍰 Pastel de Chocolate", "🍵 Té de Manzanilla"]
+precios = [78, 95, 45]
+
+# Función para calcular el total 
+def cal_total(cantidades, precios):
+    total = 0
+    for i in range(len(cantidades)):
+        total += cantidades[i] * precios[i]
+    return total
+
+# Menú para el usuario
+print("✨ Bienvenido a Cafetería ☕✨")
+nombre = input("👤 Ingresa tu nombre: ")
+
+cantidades = []
+print("\n📋 Selecciona tu producto:")
+for i in range(len(productos)):
+    print(f"{i+1}️⃣ {productos[i]} - 💲{precios[i]}")
+    cantidad = int(input(f"👉 ¿Cuántos {productos[i]} quieres? "))
+    cantidades.append(cantidad)
+
+# Calcular total
+total = cal_total(cantidades, precios)
+
+# Descuento 
+descuento = 0
+
+if total >= 150:
+    descuento = total * 0.10
+elif total >= 550:
+    descuento = total * 0.20
+
+
+total_final = total - descuento
+
+# Mostrar ticket
+print("\n🧾 --- TICKET DE COMPRA --- 🧾")
+print(f"👤 Cliente: {nombre}")
+for i in range(len(productos)):
+    if cantidades[i] > 0:
+        print(f"{productos[i]} x {cantidades[i]} = 💲{cantidades[i] * precios[i]}")
+
+print(f"\n💰 Subtotal: 💲{total}")
+if descuento > 0:
+    print(f"🔻 Descuento aplicado: -💲{descuento:.2f}")
+else:
+    print("❌ No aplica descuento")
+print(f"✅ TOTAL A PAGAR: 💲{total_final}")
+print("🎉 ¡Gracias por tu compra! 🎉")
+print("-----------------------------")
